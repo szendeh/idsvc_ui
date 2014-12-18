@@ -7,7 +7,8 @@ define([
     var _repository = {
         checkClaim: function(handle, mit_id, name_literal) {
             var claim = new ClaimModel({
-                "work": handle,
+                "workIdentifier": handle,
+                "workSchema": "cnri",
                 "identifier": mit_id,
                 "name": name_literal
             });
@@ -18,13 +19,26 @@ define([
         },
         makeNewClaim: function(handle, mit_id, name_literal) {
             var claim = new ClaimModel({
-                "work": handle,
+                "workIdentifier": handle,
+                "workSchema": "cnri",
                 "identifier": mit_id,
                 "name": name_literal,
                 "source": "dwh-match"
             });
 
             claim.save();
+
+            return claim;
+        },
+        retractClaim: function(handle, mit_id, name_literal) {
+            var claim = new ClaimModel({
+                "workIdentifier": handle,
+                "workSchema": "cnri",
+                "identifier": mit_id,
+                "name": name_literal
+            });
+
+            claim.fetch();
 
             return claim;
         }
