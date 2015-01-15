@@ -8,6 +8,7 @@ var require = {
         backbone: 'vendor/backbone-min',
         handlebars: 'vendor/handlebars-v2.0.0',
         jquery: 'vendor/jquery-1.11.1.min',
+        moment: 'vendor/moment.min',
         text: 'vendor/text',
         underscore: 'vendor/underscore'
     },

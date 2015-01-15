@@ -1,12 +1,13 @@
 define([
     'keel/BaseView',
+    'app/widgets/table/TableRowWidget',
     'text!app/pages/Home/HomePageTemplate.html',
-    'app/domain/Repository'
+    'moment'
 ], 
 function(
     BaseView,
-    HomePageTemplate,
-    Repository
+    TableRowWidget,
+    HomePageTemplate
 ) {
     'use strict';
 
@@ -17,7 +18,8 @@ function(
         elements: [
             'handle',
             'mit_id',
-            'name_string'
+            'name_string',
+            'logListBody'
         ],
 
         events: {
@@ -31,19 +33,68 @@ function(
             source: HomePageTemplate
         },
 
+        initialize: function() {
+            this.dateFormat = 'YYYY-MM-DD H:mm:ss::SSS';
+        },
+
         checkClaim: function() {
-            console.log('checkClaim!', this.handleElement.val(), this.mit_idElement.val(), this.name_stringElement.val());
-            console.log(Repository.checkClaim(this.handleElement.val(), this.mit_idElement.val(), this.name_stringElement.val()));
+            var claimObject = {
+                "identifier": this.mit_idElement.val(),
+                "name": this.name_stringElement.val(),
+                "workIdentifier": this.handleElement.val(),
+                "workSchema": "cnri"
+            };
+
+            this.addChild({
+                id: 'tr_'+ claimObject.identifier,
+                viewClass: TableRowWidget,
+                parentElement: this.logListBodyElement,
+                options: {
+                    action: "check claim",
+                    model: claimObject,
+                    position: 'first'
+                }
+            });
         },
 
         retractClaim: function() {
-            console.log('retractClaim!', this.handleElement.val(), this.mit_idElement.val(), this.name_stringElement.val());
-            console.log(Repository.retractClaim(this.handleElement.val(), this.mit_idElement.val(), this.name_stringElement.val()));
+            var claimObject = {
+                "identifier": this.mit_idElement.val(),
+                "name": this.name_stringElement.val(),
+                "workIdentifier": this.handleElement.val(),
+                "workSchema": "cnri"
+            };
+
+            this.addChild({
+                id: 'tr_'+ claimObject.identifier,
+                viewClass: TableRowWidget,
+                parentElement: this.logListBodyElement,
+                options: {
+                    action: "retract claim",
+                    model: claimObject,
+                    position: 'first'
+                }
+            });
         },
 
         submitClaim: function() {
-            console.log('submitClaim!', this.handleElement.val(), this.mit_idElement.val(), this.name_stringElement.val());
-            console.log(Repository.makeNewClaim(this.handleElement.val(), this.mit_idElement.val(), this.name_stringElement.val()));
+            var claimObject = {
+                "identifier": this.mit_idElement.val(),
+                "name": this.name_stringElement.val(),
+                "workIdentifier": this.handleElement.val(),
+                "workSchema": "cnri"
+            };
+
+            this.addChild({
+                id: 'tr_'+ claimObject.identifier,
+                viewClass: TableRowWidget,
+                parentElement: this.logListBodyElement,
+                options: {
+                    action: "submit claim",
+                    model: claimObject,
+                    position: 'first'
+                }
+            });
         }
     });
 });

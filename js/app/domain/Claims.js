@@ -5,7 +5,7 @@ define([
     'use strict';
 
     return Backbone.Collection.extend({
-        url: 'http://localhost:8080/claims'
+        url: 'http://szendeh1-8080.terminal.com/claims'
 
         model: Claim
     });

@@ -174,7 +174,7 @@ function( ExceptionUtil, Backbone, Handlebars, _, $ ) {
 
             // If the parent element is supplied, place the child under the parent
             if ( childSpec.parentElement ) {
-                child.place( childSpec.parentElement );
+                child.place( childSpec.parentElement, childSpec.options.position );
             }
 
             return child;
