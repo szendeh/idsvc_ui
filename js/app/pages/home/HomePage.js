@@ -1,7 +1,7 @@
 define([
     'keel/BaseView',
     'app/widgets/table/TableRowWidget',
-    'text!app/pages/Home/HomePageTemplate.html',
+    'text!app/pages/home/HomePageTemplate.html',
     'moment'
 ], 
 function(
