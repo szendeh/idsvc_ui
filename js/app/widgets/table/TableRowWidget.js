@@ -30,11 +30,12 @@ function(
 
         initialize: function(options) {
             this.action = options.action;
+            this.dateFormat = 'YYYY-MM-DD H:mm:ss::SSS';
         },
 
         postRender: function() {
             this.tsSentElement.html(moment().format(this.dateFormat));
-            this.actionElement.html(this.model.action);
+            this.actionElement.html(this.action);
             this.formDataElement.html('name: '+ this.model.name +'<br />handle: '+ this.model.workIdentifier +'<br />id: '+ this.model.identifier);
 
             var claim = new ClaimModel(this.model);
@@ -42,7 +43,7 @@ function(
             var that = this;
 
             switch(this.action) {
-                case 'check claim':
+                case 'check':
                     claim.fetch({
                         success: function(model, response) {
                             that.updateResults('claim found', response);
@@ -52,7 +53,7 @@ function(
                         }
                     });
                     break;
-                case 'retract claim':
+                case 'retract':
                     claim.destroy({
                         success: function(model, response) {
                             that.updateResults('claim deleted', response);
@@ -62,7 +63,7 @@ function(
                         }
                     });
                     break;
-                case 'submit claim':
+                case 'submit':
                     claim.save({}, {
                         success: function(model, response) {
                             that.updateResults('claim saved', response);

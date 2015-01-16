@@ -33,10 +33,6 @@ function(
             source: HomePageTemplate
         },
 
-        initialize: function() {
-            this.dateFormat = 'YYYY-MM-DD H:mm:ss::SSS';
-        },
-
         checkClaim: function() {
             var claimObject = {
                 "identifier": this.mit_idElement.val(),
@@ -50,7 +46,7 @@ function(
                 viewClass: TableRowWidget,
                 parentElement: this.logListBodyElement,
                 options: {
-                    action: "check claim",
+                    action: "check",
                     model: claimObject,
                     position: 'first'
                 }
@@ -70,7 +66,7 @@ function(
                 viewClass: TableRowWidget,
                 parentElement: this.logListBodyElement,
                 options: {
-                    action: "retract claim",
+                    action: "retract",
                     model: claimObject,
                     position: 'first'
                 }
@@ -90,7 +86,7 @@ function(
                 viewClass: TableRowWidget,
                 parentElement: this.logListBodyElement,
                 options: {
-                    action: "submit claim",
+                    action: "submit",
                     model: claimObject,
                     position: 'first'
                 }
